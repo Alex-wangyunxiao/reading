@@ -1,5 +1,5 @@
-/* 读书记录页 SW —— 只缓存应用外壳，资源交给浏览器 HTTP 缓存。构建：0dbde55e326f */
-const BUILD = '0dbde55e326f';
+/* 读书记录页 SW —— 只缓存应用外壳，资源交给浏览器 HTTP 缓存。构建：ae403ccb1a17 */
+const BUILD = 'ae403ccb1a17';
 const SHELL = 'shell-' + BUILD;
 const FILES = ['./', './index.html'];
 
