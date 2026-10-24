@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="385c0954490e">
+<meta name="app-version" content="cb0232a0de41">
 <title>阿云 今天读书了吗</title>
 <style>
   :root{
@@ -835,6 +835,10 @@ async function bootSplit(){
   }
 }
 function initSW(){
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+function initSW(){
   if (!('serviceWorker' in navigator)) { checkVersion(); return; }
   navigator.serviceWorker.register('sw.js').then(reg => {
     if (reg.waiting) showUpdateBar();
@@ -871,7 +875,7 @@ function showUpdateBar(){
 }
 window.addEventListener('online', () => { const b = $('#offlineBar'); if (b) b.remove(); });
 
-if (SPLIT) bootSplit(); else { render(); loadNotes(); }
+if (SPLIT) { bootSplit(); initSW(); } else { render(); loadNotes(); }
 </script>
 </body>
 </html>
