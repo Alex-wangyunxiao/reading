@@ -1,0 +1,10 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/mindmaps/*
+  Cache-Control: public, max-age=31536000, immutable
+/data/*
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/version.json
+  Cache-Control: no-store
