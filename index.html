@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="6662c268b7d5">
+<meta name="app-version" content="23baf702cf05">
 <title>阿云 今天读书了吗</title>
 <style>
   :root{
@@ -826,8 +826,10 @@ async function bootSplit(){
     try {
       notes = await fetchNotes();
       NOTES = notes; notesReady = true; idbSet('notes', notes);
-      els.hint.textContent = '';
+      els.hint.textContent = '按 / 搜索（含我的划线与想法）';
       render();
+      // 若用户已在看某本书的弹窗，笔记到位后原地刷新，避免"没有划线 tab"
+      if (curBook && els.backdrop && els.backdrop.classList.contains('on')) openBook(curBook.id, curTab);
     } catch (e) { loadNotes(); }
   } catch (e) {
     if (cBooks && cBooks.length) showBanner('offlineBar', '更新失败，继续显示已保存的内容', 'offlinebar on');
