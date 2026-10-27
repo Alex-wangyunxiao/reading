@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="app-version" content="8f35ca63fe0f">
+<meta name="app-version" content="7ad9ebdc6fc3">
 <title>阿云 今天读书了吗</title>
 <style>
   :root{
@@ -335,6 +335,8 @@ function buildYearsTypes(){
   years.forEach(y => els.year.insertAdjacentHTML('beforeend', '<option value="'+esc(y)+'">'+esc(y)+'</option>'));
   types = [...new Set(BOOKS.map(b=>b.type).filter(Boolean))].sort();
   els.type.innerHTML = '<option value="">全部</option>';
+  types.forEach(t => els.type.insertAdjacentHTML('beforeend', '<option value="'+esc(t)+'">'+esc(t)+'</option>'));
+  if (els.type.options.length !== types.length + 1) console.error('[init] 类型下拉填充异常', els.type.options.length, types.length);
   }
 
 // ==== 类型：两级下拉（父类可折叠） ====
@@ -444,8 +446,6 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeAllDdl(null); }
 });
-
-types.forEach(t => els.type.insertAdjacentHTML('beforeend', '<option value="'+esc(t)+'">'+esc(t)+'</option>'));
 
 // 头部
 function renderHeader(){
